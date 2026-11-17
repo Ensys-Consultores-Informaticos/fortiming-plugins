@@ -44,7 +44,9 @@ El portal de OpenAI acepta el formato de plugin de Claude y lo convierte, pero n
 2. Añadir en el mismo borrador los procedimientos de `fortiming/skills/`.
 3. Verificar el dominio: el portal da un token que hay que servir en `https://mcp.fortiming.com/.well-known/openai-apps-challenge`. EnsysIA ya tiene la ruta; los pasos están en la guía de despliegue.
 
-Según la guía de OpenAI para plugins de Claude, un conector con OAuth debe además ofrecer un punto *UserInfo* que devuelva el correo del usuario y `email_verified: true`, con los ámbitos `openid` y `email`. La pasarela de EnsysIA no lo tiene hoy. Hay que confirmar el requisito en la documentación de OpenAI antes de desarrollarlo.
+El punto *UserInfo* de OpenID Connect no es obligatorio para enviar el plugin (comprobado el 17-nov-2026 en la documentación de autenticación de OpenAI). Solo hace falta para una función de ChatGPT Enterprise, las restricciones por dominio del espacio de trabajo, que usa el correo verificado del usuario. La pasarela de EnsysIA no lo ofrece ni anuncia los ámbitos `openid` y `email`, y así debe seguir mientras no se desarrolle: ChatGPT pide por defecto todos los ámbitos de OpenID Connect que el servidor anuncie.
+
+La cuenta de prueba para los revisores de OpenAI tiene que entrar sin segundo factor ni códigos por correo o SMS.
 
 ## Documentación de referencia
 
