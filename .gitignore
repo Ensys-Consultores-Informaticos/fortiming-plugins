@@ -1,0 +1,8 @@
+# Ficheros del sistema: el directorio de Claude rechaza el plugin si los encuentra
+.DS_Store
+Thumbs.db
+desktop.ini
+__MACOSX/
+
+# Paquetes para probar el plugin subiéndolo a mano
+*.zip

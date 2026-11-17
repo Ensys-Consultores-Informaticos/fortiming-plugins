@@ -1,0 +1,21 @@
+{
+  "name": "fortiming",
+  "displayName": "ForTiming",
+  "version": "1.0.0",
+  "description": "Consulta y registra desde una conversación los datos de ForTiming: partes de tiempo, proyectos y presupuestos, registro de jornada, ausencias y notas de gasto. Incluye el conector de ForTiming y procedimientos para imputar horas, revisar un equipo y seguir proyectos.",
+  "author": {
+    "name": "Ensys Consultores Informáticos, S.L.",
+    "url": "https://fortiming.com"
+  },
+  "homepage": "https://fortiming.com",
+  "license": "Propietario",
+  "keywords": [
+    "fortiming",
+    "control-horario",
+    "partes-de-tiempo",
+    "registro-de-jornada",
+    "proyectos",
+    "presupuestos",
+    "ensys"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ensys-fortiming",
+  "owner": {
+    "name": "Ensys Consultores Informáticos, S.L."
+  },
+  "metadata": {
+    "description": "Plugins de Ensys Consultores para trabajar con ForTiming desde un asistente de IA."
+  },
+  "plugins": [
+    {
+      "name": "fortiming",
+      "source": "./fortiming",
+      "description": "Consulta y registra desde una conversación los datos de ForTiming: partes de tiempo, proyectos y presupuestos, registro de jornada, ausencias y notas de gasto. Incluye el conector de ForTiming."
+    }
+  ]
+}

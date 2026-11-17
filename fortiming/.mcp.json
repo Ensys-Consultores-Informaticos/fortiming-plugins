@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "fortiming": {
+      "type": "http",
+      "url": "https://mcp.fortiming.com/ensysia/api/mcp"
+    }
+  }
+}
