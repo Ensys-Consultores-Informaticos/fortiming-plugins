@@ -15,7 +15,7 @@ Quién puede enviar: una cuenta de pago de claude.ai. En un plan Team o Enterpri
 | Política de privacidad con dirección propia | **(tú)** La web trata la privacidad dentro de `/aviso-legal/` y de `/servicios/terminos-y-condiciones/`; no hay una página aparte |
 | Contacto de soporte | **(tú)** La web tiene `https://fortiming.com/contacto/` y `https://fortiming.com/soporte/` |
 | Icono | Hay un SVG en `GesiaQuattro/Recursos/iconos svg/generales/fortiming.svg`. El portal dirá qué formato y tamaño admite |
-| Haber ejecutado todas las tools | Parcial: con Claude se han llamado tres. El portal pide confirmar que se han probado todas |
+| Haber ejecutado todas las tools | Hecho el 18-nov-2026: las 63 llamadas desde Claude por el conector personalizado, contra producción. Las 58 de lectura responden con datos; las 5 de escritura, en modo de comprobación (`dry_run`), sin grabar nada |
 
 ## Formulario 1: conector (*MCP connector*)
 

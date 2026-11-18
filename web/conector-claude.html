@@ -1,0 +1,102 @@
+<!--
+  Página pública del conector de ForTiming para Claude.
+  Para WordPress: crear una página «Conectar ForTiming con Claude», añadir un bloque
+  «HTML personalizado» y pegar todo lo que hay debajo de este comentario.
+  Enlace permanente recomendado: /conector-claude/
+-->
+<div class="ft-claude">
+<style>
+.ft-claude{max-width:820px;margin:0 auto;line-height:1.6;font-size:17px}
+.ft-claude h2{margin:2.2em 0 .6em;font-size:1.45em;line-height:1.3}
+.ft-claude h3{margin:1.6em 0 .4em;font-size:1.1em}
+.ft-claude p,.ft-claude ul,.ft-claude ol{margin:0 0 1em}
+.ft-claude li{margin:.3em 0}
+.ft-claude .ft-intro{font-size:1.1em}
+.ft-claude .ft-url{display:block;margin:.6em 0 1em;padding:.8em 1em;border:1px solid rgba(0,0,0,.15);border-radius:8px;background:rgba(0,0,0,.04);font-family:Consolas,Menlo,monospace;font-size:.95em;word-break:break-all;user-select:all}
+.ft-claude table{width:100%;border-collapse:collapse;margin:0 0 1.2em}
+.ft-claude th,.ft-claude td{text-align:left;vertical-align:top;padding:.6em .7em;border-bottom:1px solid rgba(0,0,0,.12)}
+.ft-claude th{font-weight:600}
+.ft-claude .ft-ejemplos li{list-style:none;margin-left:-1.2em;padding:.4em .8em;border-left:3px solid rgba(0,0,0,.2);margin-bottom:.5em}
+.ft-claude .ft-nota{padding:.8em 1em;border-left:4px solid #e5533d;background:rgba(229,83,61,.06);border-radius:0 8px 8px 0}
+@media (max-width:600px){.ft-claude{font-size:16px}.ft-claude th,.ft-claude td{padding:.5em .4em}}
+</style>
+
+<p class="ft-intro">El conector de ForTiming permite usar tus datos de ForTiming desde una conversación con Claude: consultar horas, proyectos, presupuestos, registro de jornada, ausencias y notas de gasto, y registrar partes de tiempo.</p>
+
+<h2>Requisitos</h2>
+<ul>
+  <li>Una cuenta de usuario de ForTiming.</li>
+  <li>Que tu empresa tenga contratado el acceso por API de ForTiming.</li>
+  <li>Una cuenta de Claude en un plan que admita conectores.</li>
+</ul>
+<p>No hay que instalar nada, registrar ninguna aplicación ni configurar claves.</p>
+
+<h2>Cómo conectarlo</h2>
+<ol>
+  <li>En Claude, abre <strong>Configuración → Conectores</strong>.</li>
+  <li>Busca <strong>ForTiming</strong> en el directorio y pulsa <strong>Conectar</strong>. Si todavía no aparece, elige <strong>Agregar → Conector personalizado</strong> y escribe esta dirección:
+    <span class="ft-url">https://mcp.fortiming.com/ensysia/api/mcp</span>
+  </li>
+  <li>Se abre la pantalla de acceso de ForTiming. Inicia sesión con tu usuario de siempre.</li>
+  <li>ForTiming te enseña los permisos que pide Claude. Acéptalos.</li>
+</ol>
+<p>La dirección es la misma para todas las empresas.</p>
+
+<h2>Qué puede hacer Claude</h2>
+<p>Claude ve y hace lo mismo que tu usuario en ForTiming: se aplican tus permisos.</p>
+
+<h3>Consultar</h3>
+<ul>
+  <li>Partes de tiempo y horas por persona, proyecto, cliente o actividad.</li>
+  <li>Presupuestos, desviaciones y márgenes de los proyectos.</li>
+  <li>Registro de jornada: fichajes, retrasos e informe de registro de jornada.</li>
+  <li>Ausencias, vacaciones y calendario laboral.</li>
+  <li>Notas de gasto y su estado de liquidación.</li>
+  <li>Empleados, departamentos y centros de trabajo.</li>
+</ul>
+
+<h3>Escribir</h3>
+<ul>
+  <li>Crear, modificar y borrar partes de tiempo.</li>
+  <li>Cerrar y reabrir proyectos.</li>
+</ul>
+<p class="ft-nota">Antes de escribir, Claude enseña el cambio y espera tu confirmación.</p>
+
+<h3>Lo que no hace</h3>
+<p>No ficha, no corrige fichajes y no valida jornadas ni ausencias. Eso se hace en la aplicación de ForTiming.</p>
+
+<h2>Ejemplos</h2>
+<ul class="ft-ejemplos">
+  <li>«¿Cuántas horas he imputado esta semana y qué me falta?»</li>
+  <li>«Apunta 3 horas de hoy al proyecto Alfa, actividad Análisis.»</li>
+  <li>«¿Cómo va el proyecto Alfa frente a su presupuesto?»</li>
+  <li>«¿Quién de mi equipo tiene horas sin imputar este mes?»</li>
+  <li>«¿Qué notas de gasto están pendientes de liquidar?»</li>
+</ul>
+
+<h2>Permisos</h2>
+<p>Al conectar, ForTiming pide tu consentimiento para estos permisos:</p>
+<table>
+  <thead><tr><th>Área</th><th>Qué incluye</th><th>Acceso</th></tr></thead>
+  <tbody>
+    <tr><td>Organización</td><td>Empleados, departamentos, calendario y ausencias</td><td>Lectura</td></tr>
+    <tr><td>Tiempos</td><td>Partes de tiempo, proyectos y presupuestos</td><td>Lectura y escritura</td></tr>
+    <tr><td>Registro de jornada</td><td>Fichajes y jornadas</td><td>Lectura</td></tr>
+    <tr><td>Gastos</td><td>Notas de gasto</td><td>Lectura</td></tr>
+  </tbody>
+</table>
+
+<h2>Datos y privacidad</h2>
+<ul>
+  <li>El inicio de sesión se hace en ForTiming. Claude no ve tu contraseña.</li>
+  <li>Los datos viajan entre Claude y tu cuenta de ForTiming a través de <code>mcp.fortiming.com</code>, con tu sesión y tus permisos.</li>
+  <li>El conector no devuelve el DNI. El correo electrónico, las tarifas por hora y los comentarios de las ausencias solo se incluyen cuando los pides expresamente.</li>
+  <li>El tratamiento que hace Claude de la conversación se rige por las condiciones de Anthropic. El de ForTiming, por nuestro <a href="https://fortiming.com/aviso-legal/">aviso legal y política de privacidad</a>.</li>
+</ul>
+
+<h2>Desconectar</h2>
+<p>En Claude, <strong>Configuración → Conectores → ForTiming → Desconectar</strong>. Puedes volver a conectarlo cuando quieras.</p>
+
+<h2>Soporte</h2>
+<p>Si tienes dudas o algo no funciona, escríbenos desde la <a href="https://fortiming.com/soporte/">página de soporte</a>.</p>
+</div>
