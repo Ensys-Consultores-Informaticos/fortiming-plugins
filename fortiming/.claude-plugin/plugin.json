@@ -9,6 +9,10 @@
   },
   "homepage": "https://fortiming.com/conector-claude/",
   "privacyPolicyUrl": "https://fortiming.com/aviso-legal/",
+  "supportUrl": "https://fortiming.com/soporte/",
+  "documentationUrl": "https://fortiming.com/conector-claude/",
+  "termsOfServiceUrl": "https://fortiming.com/servicios/terminos-y-condiciones/",
+  "repository": "https://github.com/Ensys-Consultores-Informaticos/fortiming-plugins",
   "license": "Propietario",
   "keywords": [
     "fortiming",
