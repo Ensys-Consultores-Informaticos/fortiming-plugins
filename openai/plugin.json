@@ -1,0 +1,46 @@
+{
+  "name": "fortiming",
+  "version": "1.0.0",
+  "description": "Consulta y registra desde una conversación los datos de ForTiming: partes de tiempo, proyectos y presupuestos, registro de jornada, ausencias y notas de gasto. Incluye procedimientos para imputar horas, revisar un equipo y seguir proyectos.",
+  "author": {
+    "name": "Ensys Consultores Informáticos, S.L.",
+    "url": "https://fortiming.com"
+  },
+  "homepage": "https://fortiming.com/conector-chatgpt/",
+  "repository": "https://github.com/Ensys-Consultores-Informaticos/fortiming-plugins",
+  "license": "Propietario",
+  "keywords": [
+    "fortiming",
+    "control-horario",
+    "partes-de-tiempo",
+    "registro-de-jornada",
+    "proyectos",
+    "presupuestos",
+    "ensys"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "ForTiming",
+        "shortDescription": "Horas, proyectos y jornada",
+        "longDescription": "ForTiming es la aplicación de control horario y gestión de tiempos de Ensys Consultores. Este plugin permite preguntar por los datos de tu empresa en ForTiming y registrar horas sin salir de la conversación.\n\nQué puedes consultar: partes de tiempo y horas por persona, proyecto, cliente o actividad; presupuestos, desviaciones y márgenes de los proyectos; registro de jornada, fichajes, retrasos e informe de registro de jornada; ausencias, vacaciones y calendario laboral; notas de gasto y su estado de liquidación; empleados, departamentos y centros de trabajo.\n\nQué puedes hacer: crear, modificar y borrar partes de tiempo, y cerrar o reabrir proyectos. Antes de escribir, el asistente enseña el cambio y espera tu confirmación.\n\nEl asistente ve y hace lo mismo que tu usuario en ForTiming: se aplican tus permisos. El inicio de sesión se hace en ForTiming con OAuth; el asistente no ve tu contraseña. El plugin no devuelve el DNI, y el correo, las tarifas y los comentarios de las ausencias solo se incluyen cuando los pides.\n\nRequiere una cuenta de ForTiming en una empresa con el acceso por API activado.",
+        "developerName": "Ensys Consultores Informáticos, S.L.",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://fortiming.com/conector-chatgpt/",
+        "supportURL": "https://fortiming.com/soporte/",
+        "privacyPolicyURL": "https://fortiming.com/aviso-legal/",
+        "termsOfServiceURL": "https://fortiming.com/servicios/terminos-y-condiciones/",
+        "defaultPrompt": [
+          "¿Cuántas horas he imputado esta semana y qué me falta por imputar?",
+          "¿Qué proyectos se están pasando del presupuesto de horas este año?",
+          "¿Quién de mi equipo tiene horas sin imputar este mes?"
+        ],
+        "brandColor": "#C75555",
+        "brandColorDark": "#C75555",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

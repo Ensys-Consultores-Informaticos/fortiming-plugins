@@ -38,15 +38,12 @@ Lo que comprueba la validación y ya se cumple:
 
 ## Directorio de ChatGPT y Codex
 
-El portal de OpenAI acepta el formato de plugin de Claude y lo convierte, pero no lee `.mcp.json`: el servidor MCP se envía aparte, como punto de acceso remoto, en el mismo borrador.
+Todo lo necesario está en la carpeta `openai/`, aparte de la del plugin de Claude para no generar versiones nuevas en el directorio de Claude:
 
-1. Crear el plugin en el portal de OpenAI, opción *With MCP*, con la URL `https://mcp.fortiming.com/ensysia/api/mcp`.
-2. Añadir en el mismo borrador los procedimientos de `fortiming/skills/`.
-3. Verificar el dominio: el portal da un token que hay que servir en `https://mcp.fortiming.com/.well-known/openai-apps-challenge`. EnsysIA ya tiene la ruta; los pasos están en la guía de despliegue.
-
-El punto *UserInfo* de OpenID Connect no es obligatorio para enviar el plugin (comprobado el 17-nov-2026 en la documentación de autenticación de OpenAI). Solo hace falta para una función de ChatGPT Enterprise, las restricciones por dominio del espacio de trabajo, que usa el correo verificado del usuario. La pasarela de EnsysIA no lo ofrece ni anuncia los ámbitos `openid` y `email`, y así debe seguir mientras no se desarrolle: ChatGPT pide por defecto todos los ámbitos de OpenID Connect que el servidor anuncie.
-
-La cuenta de prueba para los revisores de OpenAI tiene que entrar sin segundo factor ni códigos por correo o SMS.
+- `openai/ENVIO-OPENAI.md`: pasos, valores del formulario, casos de prueba y lo que falta antes de enviar.
+- `openai/plugin.json`: manifiesto con los datos del listado de OpenAI.
+- `openai/empaquetar.py`: genera el zip que se sube al portal.
+- `web/conector-chatgpt.html`: página pública para `fortiming.com/conector-chatgpt/`.
 
 ## Documentación de referencia
 
