@@ -18,7 +18,7 @@ Es el mismo servidor MCP y los mismos procedimientos que el plugin de Claude, qu
 | Paquete del plugin | Hecho: `python openai/empaquetar.py` genera `fortiming-openai-1.0.0.zip` |
 | Manifiesto con los datos del listado | Hecho: `openai/plugin.json` |
 | Ruta de verificación de dominio en EnsysIA | Hecho. Sirve la variable `OPENAI_APPS_CHALLENGE` |
-| Ruta de verificación en Nginx | **Falta desplegar.** Está en `GesiaQuattro-doc/entornos/nginx/.../apps/ensysia.conf` |
+| Ruta de verificación en Nginx | Hecho en `gqc`, el servidor de entrada (comprobado el 20-nov-2026: el 404 sin token lo da EnsysIA). Sin comprobar en el resto de servidores. Está en `GesiaQuattro-doc/entornos/nginx/.../apps/ensysia.conf` |
 | Página pública `https://fortiming.com/conector-chatgpt/` | **Falta publicar.** El HTML está en `web/conector-chatgpt.html` |
 | Cuenta de prueba para los revisores, sin segundo factor | **Falta** |
 | Vídeo de demostración | **Falta** |
@@ -33,7 +33,7 @@ Es el mismo servidor MCP y los mismos procedimientos que el plugin de Claude, qu
 
 ### Nginx
 
-Desplegar `apps/ensysia.conf` con `sync_conf.bat` (carpeta `GesiaQuattro-doc/entornos/nginx/produccion`) al menos en `gqc`, que es el servidor de entrada de `mcp.fortiming.com`, y mejor en todos para que la configuración siga siendo igual. Después, en cada servidor:
+Ya está desplegado en `gqc`, que es el servidor de entrada de `mcp.fortiming.com` (comprobado el 20-nov-2026). Queda opcional subirlo al resto para que la configuración siga siendo igual: desplegar `apps/ensysia.conf` con `sync_conf.bat` (carpeta `GesiaQuattro-doc/entornos/nginx/produccion`) y después, en cada servidor:
 
 ```bash
 sudo nginx -t && sudo systemctl reload nginx
@@ -109,7 +109,7 @@ Ya están en `openai/plugin.json`. Para cambiarlos se edita ese fichero y se vue
 | `category` | Productivity | |
 | `capabilities` | Read, Write | |
 | `websiteURL` | `https://fortiming.com/conector-chatgpt/` | |
-| `supportURL` | `https://fortiming.com/soporte/` | |
+| `supportURL` | `https://fortiming.com/contacto/` | |
 | `privacyPolicyURL` | `https://fortiming.com/aviso-legal/` | |
 | `termsOfServiceURL` | `https://fortiming.com/servicios/terminos-y-condiciones/` | |
 | `defaultPrompt` | Tres preguntas de ejemplo | 3 × 128 |

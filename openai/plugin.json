@@ -28,7 +28,7 @@
         "category": "Productivity",
         "capabilities": ["Read", "Write"],
         "websiteURL": "https://fortiming.com/conector-chatgpt/",
-        "supportURL": "https://fortiming.com/soporte/",
+        "supportURL": "https://fortiming.com/contacto/",
         "privacyPolicyURL": "https://fortiming.com/aviso-legal/",
         "termsOfServiceURL": "https://fortiming.com/servicios/terminos-y-condiciones/",
         "defaultPrompt": [
