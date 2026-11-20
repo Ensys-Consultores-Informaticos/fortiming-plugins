@@ -64,14 +64,14 @@ No ficha, no corrige fichajes y no valida jornadas ni ausencias. Eso se hace en 
 
 ## Permisos
 
-Al conectar, ForTiming pide tu consentimiento para estos permisos, de lectura y de escritura por separado:
+Al conectar, ForTiming pide tu consentimiento para estos permisos:
 
-| Área | Qué incluye |
-|---|---|
-| Organización | Empleados, departamentos, calendario y ausencias |
-| Tiempos | Partes de tiempo, proyectos y presupuestos |
-| Registro de jornada | Fichajes y jornadas |
-| Gastos | Notas de gasto |
+| Área | Qué incluye | Acceso |
+|---|---|---|
+| Organización | Empleados, departamentos, calendario y ausencias | Lectura |
+| Tiempos | Partes de tiempo, proyectos y presupuestos | Lectura y escritura |
+| Registro de jornada | Fichajes y jornadas | Lectura |
+| Gastos | Notas de gasto | Lectura |
 
 ## Datos y privacidad
 

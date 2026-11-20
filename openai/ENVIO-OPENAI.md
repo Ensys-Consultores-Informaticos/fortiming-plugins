@@ -19,8 +19,9 @@ Es el mismo servidor MCP y los mismos procedimientos que el plugin de Claude, qu
 | Manifiesto con los datos del listado | Hecho: `openai/plugin.json` |
 | Ruta de verificación de dominio en EnsysIA | Hecho. Sirve la variable `OPENAI_APPS_CHALLENGE` |
 | Ruta de verificación en Nginx | Hecho en `gqc`, el servidor de entrada (comprobado el 20-nov-2026: el 404 sin token lo da EnsysIA). Sin comprobar en el resto de servidores. Está en `GesiaQuattro-doc/entornos/nginx/.../apps/ensysia.conf` |
-| Página pública `https://fortiming.com/conector-chatgpt/` | **Falta publicar.** El HTML está en `web/conector-chatgpt.html` |
-| Cuenta de prueba para los revisores, sin segundo factor | **Falta** |
+| Página pública `https://fortiming.com/conector-chatgpt/` | Hecho. Publicada y comprobada el 20-nov-2026. El HTML está en `web/conector-chatgpt.html` |
+| Ámbitos OAuth que se piden al conectar | **Falta desplegar.** Producción pide los ocho de ForTiming. EnsysIA anuncia ya solo los cinco que usan las tools (cambio del 20-nov-2026), y hay que desplegarlo antes de grabar el vídeo y de enviar: la pantalla de consentimiento no debe enseñar permisos de escritura que el plugin no usa |
+| Cuenta de prueba para los revisores, sin segundo factor | Creada el 20-nov-2026. **Falta** ejecutar con ella los casos de prueba en chatgpt.com |
 | Vídeo de demostración | **Falta** |
 | Organización de OpenAI verificada y permiso para enviar | **Falta comprobar** |
 
@@ -47,7 +48,7 @@ curl -si https://mcp.fortiming.com/.well-known/openai-apps-challenge
 
 ### Página pública
 
-Publicar `web/conector-chatgpt.html` en WordPress como se hizo con la de Claude: página nueva «Conectar ForTiming con ChatGPT», bloque **HTML personalizado** con todo lo que va desde `<div class="ft-app">`, enlace permanente `conector-chatgpt`. OpenAI exige que las direcciones públicas funcionen y sean del mismo editor que envía.
+Publicada el 20-nov-2026. Si cambia `web/conector-chatgpt.html`, hay que volver a pegarlo en WordPress como se hizo con la de Claude: página «Conectar ForTiming con ChatGPT», bloque **HTML personalizado** con todo lo que va desde `<div class="ft-app">`, enlace permanente `conector-chatgpt`. OpenAI exige que las direcciones públicas funcionen y sean del mismo editor que envía.
 
 ### Cuenta de prueba para los revisores
 
@@ -60,9 +61,48 @@ OpenAI exige una cuenta que entre **sin segundo factor, sin códigos por correo 
 
 Las credenciales se escriben en el formulario **Review details** del portal, nunca en el zip.
 
+### Ámbitos OAuth
+
+La pantalla de consentimiento de ForTiming tiene que enseñar solo estos permisos, que son los de la tabla de la página pública:
+
+- Leer datos de organización.
+- Leer y escribir datos de partes de tiempo.
+- Leer datos de notas de gastos.
+- Leer datos de registro de jornada.
+
+Si enseña también la escritura de organización, de notas de gastos o de registro de jornada, el servidor al que apunta `mcp.fortiming.com` no tiene desplegado el cambio de EnsysIA. Comprobación:
+
+```bash
+curl -s https://mcp.fortiming.com/.well-known/oauth-protected-resource
+```
+
+`scopes_supported` debe traer `read_organizacion`, `read_tiempos`, `write_tiempos`, `read_gastos` y `read_fichaje`, y ninguno más.
+
 ### Vídeo de demostración
 
 OpenAI pide un enlace a un vídeo (`demo_recording_url`) que los revisores puedan abrir: conectar ForTiming desde ChatGPT, iniciar sesión y recorrer dos o tres de los casos de prueba, incluida una escritura con su confirmación.
+
+Se graba en chatgpt.com, con la cuenta de prueba, de una sola toma. Duración: unos 3 minutos, 5 como máximo.
+
+| # | Tiempo | Qué se ve | Qué demuestra |
+|---|---|---|---|
+| 1 | 0:00 | Abrir la aplicación ForTiming en ChatGPT y pulsar **Conectar** | Instalación |
+| 2 | 0:15 | Pantalla de acceso de ForTiming: usuario de prueba, contraseña y entrar | Acceso sin segundo factor |
+| 3 | 0:35 | Pantalla de permisos de ForTiming, aceptar y vuelta a ChatGPT ya conectado | OAuth y consentimiento |
+| 4 | 0:50 | «¿Cuántas horas he imputado esta semana y qué me falta por imputar?» | Lectura personal |
+| 5 | 1:20 | «¿Qué proyectos se están pasando del presupuesto de horas este año?» | Lectura analítica |
+| 6 | 1:50 | «Apunta 2 horas de hoy al proyecto Sample Project 1, actividad Analysis». Esperar a que enseñe el parte y pida confirmación, y responder «Sí, grábalo» | Escritura con confirmación |
+| 7 | 2:30 | «Ficha mi entrada ahora» | Límite: no ficha y remite a ForTiming |
+| 8 | 2:50 | Configuración → ForTiming → **Desconectar** | Desconexión |
+
+Al grabar:
+
+- Desplegar las llamadas a las tools en los pasos 4 a 6. En el 6 tiene que distinguirse la vista previa (`dry_run`) de la grabación real.
+- Solo datos de la empresa de prueba en pantalla: sin otras pestañas, marcadores ni datos reales. Ventana limpia a 1920×1080.
+- Usar una ventana privada, para que ForTiming pida las credenciales y no reutilice una sesión abierta.
+- Los prompts van en español, que es el idioma del producto. Añadir rótulos o subtítulos breves en inglés en cada paso, porque los revisores leen inglés.
+- Antes de grabar, borrar el parte del paso 6 si se creó en los ensayos, para que las horas pendientes del paso 4 sean coherentes.
+- Subirlo a un sitio que se abra sin iniciar sesión, por ejemplo YouTube como «no listado».
 
 ## 2. En el portal
 
@@ -120,7 +160,7 @@ Países (`publication.countries`): sin restringir, salvo que se decida limitar a
 
 ## 4. Casos de prueba
 
-OpenAI pide cinco positivos y tres negativos, ejecutados antes con la cuenta de prueba. Sustituir «Proyecto Demo» y «Análisis» por un proyecto y una actividad que existan en la empresa de prueba.
+OpenAI pide cinco positivos y tres negativos, ejecutados antes con la cuenta de prueba. El proyecto «Sample Project 1» y la actividad «Analysis» del caso 3 existen en la empresa de prueba, que tiene los datos en inglés.
 
 ### Positivos
 
@@ -128,7 +168,7 @@ OpenAI pide cinco positivos y tres negativos, ejecutados antes con la cuenta de 
 |---|---|---|---|---|
 | 1 | Horas imputadas por el usuario | ¿Cuántas horas he imputado esta semana? | `perfil_usuario`, `resumen_horas_trabajadas` | Da el total de horas de la semana en curso y el número de partes |
 | 2 | Horas pendientes de imputar | ¿Qué horas me faltan por imputar esta semana? | `perfil_usuario`, `pendiente_imputacion` | Lista los días con horas pendientes frente a la jornada prevista y el total que falta |
-| 3 | Registrar horas con confirmación | Apunta 2 horas de hoy al proyecto Demo, actividad Análisis | `buscar_centro_coste`, `buscar_actividad`, `crear_partes_tiempo` | Primero enseña el parte que va a crear (`dry_run`) y pide confirmación; solo al confirmar lo graba y devuelve su identificador |
+| 3 | Registrar horas con confirmación | Apunta 2 horas de hoy al proyecto Sample Project 1, actividad Analysis | `buscar_centro_coste`, `buscar_actividad`, `crear_partes_tiempo` | Primero enseña el parte que va a crear (`dry_run`) y pide confirmación; solo al confirmar lo graba y devuelve su identificador |
 | 4 | Proyectos excedidos | ¿Qué proyectos se están pasando del presupuesto de horas este año? | `cumplimiento_presupuesto` | Lista los proyectos con estado excedido, con horas presupuestadas, trabajadas y porcentaje de consumo |
 | 5 | Saldo de vacaciones | ¿Cuántos días de vacaciones me quedan este año? | `saldo_vacaciones` | Da los días que corresponden, los disfrutados, los pendientes de aprobar y los disponibles |
 
